@@ -30,7 +30,7 @@ function babel(input, out, options) {
     } else {
       output = babelc.transform(input, options);
       if (options.sourceMap) {
-        output = [output.code, output.map]
+        output = [output.code, output.map];
       } else {
         output = output.code;
       }
@@ -42,6 +42,10 @@ function babel(input, out, options) {
 babel.register = function (q) {
   quake = q;
   return true;
+};
+
+babel.transform = function (options) {
+  return v => Array.isArray(v) ? v.map(v => babel.transform(v, options).code) : babel.transform(v, options).code;
 };
 
 module.exports = babel;
