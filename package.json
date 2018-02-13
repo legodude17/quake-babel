@@ -1,0 +1,22 @@
+{
+  "name": "quake-babel",
+  "version": "1.0.0",
+  "description": "Babel extenstion for quake",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "quake",
+    "babel"
+  ],
+  "author": "JDB",
+  "license": "MIT",
+  "dependencies": {
+    "babel-core": "^6.26.0"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
+    "quake-task": "file:../quake"
+  }
+}
