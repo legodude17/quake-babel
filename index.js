@@ -2,7 +2,7 @@ const babelc = require("babel-core");
 const fs = require('fs');
 const path = require('path');
 var quake = null;
-
+/*
 function sourceMapper(options) {
   var idx = 1;
   return function (data) {
@@ -19,9 +19,10 @@ function sourceMap(options) {
     return sourceMapper(options)(data);
   };
 }
-
+*/
 function babel(input, out, options) {
-  if (options.sourceMap && options.sourceMap !== "inline" && !options.sourceMapDir) throw new Error("Must provide sourceMapDir");
+  if (options.sourceMap) throw new Error("quake-babel does not support source maps");
+  // if (options.sourceMap && options.sourceMap !== "inline" && !options.sourceMapDir) throw new Error("Must provide sourceMapDir");
   if (!quake) throw new Error("babel requires registration. Call quake.register(babel)");
   return [quake.create(out), quake.src(input), function Transform(input, cb) {
     var output;
@@ -36,7 +37,7 @@ function babel(input, out, options) {
       }
     }
     cb(null, output);
-  }, sourceMap(options), quake.dest(out)].filter(a=>!!a);
+  }, /*sourceMap(options),*/ quake.dest(out)].filter(a=>!!a);
 }
 
 babel.register = function (q) {
